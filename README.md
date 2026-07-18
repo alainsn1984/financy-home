@@ -108,6 +108,36 @@ uv run pytest
 
 ---
 
+## Base de datos — Postgres + Alembic
+
+Config: copiar `.env.example` → `.env` (`DATABASE_URL` async, `postgresql+asyncpg://...`). `.env` gitignored.
+
+Arrancar Postgres (Docker):
+
+```bash
+docker compose up -d
+```
+
+Aplicar migraciones:
+
+```bash
+uv run alembic upgrade head
+```
+
+Revertir (drop schema):
+
+```bash
+uv run alembic downgrade base
+```
+
+Tests DB (requieren Postgres arriba; insertan + leen `Transaction` contra Postgres real):
+
+```bash
+uv run pytest
+```
+
+---
+
 ## Flujo Asíncrono
 
 Reduce drásticamente carga administrativa gestión doméstica mediante procesamiento paralelo 3 canales entrada datos.
