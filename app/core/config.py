@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     environment: str = "development"
     api_v1_prefix: str = "/api/v1"
     log_level: str = "INFO"
+    database_url: str
 
 
 @lru_cache
