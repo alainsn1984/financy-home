@@ -10,6 +10,7 @@ dependencies = [
     "sqlmodel>=0.0.39",
     "asyncpg>=0.31.0",
     "alembic>=1.18.5",
+    "greenlet>=3.5.3",
 ]
 
 [dependency-groups]
