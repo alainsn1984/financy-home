@@ -1,6 +1,6 @@
 # SPEC 01 — FastAPI backend scaffolding
 
-> **Status:** Aproved
+> **Status:** Implemented
 > **Depends on:** —
 > **Date:** 2026-07-18
 > **Objective:** Create the runnable FastAPI backend skeleton (layered layout, config, tooling, healthcheck) with no business logic yet.
