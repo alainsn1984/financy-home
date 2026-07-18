@@ -80,6 +80,34 @@ Paneles enriquecidos Next.js permiten:
 
 ---
 
+## Backend — desarrollo local
+
+Requiere [`uv`](https://docs.astral.sh/uv/) (instalar: `curl -LsSf https://astral.sh/uv/install.sh | sh`).
+
+Instalar dependencias:
+
+```bash
+uv sync
+```
+
+Arrancar servidor (recarga en caliente):
+
+```bash
+uv run uvicorn app.main:app --reload
+```
+
+Healthcheck: `GET http://127.0.0.1:8000/api/v1/health` → `{"status":"ok","service":"financiera-hogar","version":"0.1.0"}`
+
+Lint / format / tests:
+
+```bash
+uv run ruff check .
+uv run ruff format --check .
+uv run pytest
+```
+
+---
+
 ## Flujo Asíncrono
 
 Reduce drásticamente carga administrativa gestión doméstica mediante procesamiento paralelo 3 canales entrada datos.
