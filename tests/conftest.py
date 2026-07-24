@@ -6,7 +6,7 @@ from alembic import command
 from alembic.config import Config
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.db import async_session_maker
+from app.core.db import async_session_maker, engine
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -24,3 +24,4 @@ async def session() -> AsyncGenerator[AsyncSession, None]:
     async with async_session_maker() as s:
         yield s
         await s.rollback()
+    await engine.dispose()
