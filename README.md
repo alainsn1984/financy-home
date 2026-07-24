@@ -138,6 +138,22 @@ uv run pytest
 
 ---
 
+## API — Transacciones (CRUD)
+
+Capa de servicio (`TransactionService`) + rutas REST sobre `Transaction`. Consumida tanto por esta API como por los futuros canales texto/voz/visión — misma lógica, sin queries SQLModel duplicadas por caller.
+
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| `POST` | `/api/v1/transactions` | Crea transacción |
+| `GET` | `/api/v1/transactions/{id}` | Obtiene por id (404 si no existe) |
+| `GET` | `/api/v1/transactions` | Lista paginada (`limit`/`offset`, filtros `category`/`source_channel`) |
+| `PATCH` | `/api/v1/transactions/{id}` | Actualiza parcial (404 si no existe) |
+| `DELETE` | `/api/v1/transactions/{id}` | Elimina (404 si no existe) |
+
+`limit` capado server-side en 200 sin importar valor pedido. `source_channel` no es actualizable vía `PATCH` (se fija una sola vez al crear).
+
+---
+
 ## Flujo Asíncrono
 
 Reduce drásticamente carga administrativa gestión doméstica mediante procesamiento paralelo 3 canales entrada datos.
