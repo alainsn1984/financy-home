@@ -1,8 +1,11 @@
 import uuid
+from collections.abc import AsyncGenerator
 
+from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlmodel import select
 
+from app.core.db import get_session
 from app.models.transaction import Transaction
 from app.schemas.transaction import TransactionCreate, TransactionUpdate
 
@@ -55,3 +58,9 @@ class TransactionService:
         await self.session.delete(transaction)
         await self.session.commit()
         return True
+
+
+async def get_transaction_service(
+    session: AsyncSession = Depends(get_session),
+) -> AsyncGenerator[TransactionService, None]:
+    yield TransactionService(session)
